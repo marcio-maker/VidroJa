@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VidraJá - Encontre Vidraceiros de Confiança</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-glass-martini"></i> VidraJá
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="tab-link" data-tab="search">Buscar</a></li>
+                    <li><a href="#" class="tab-link" data-tab="register">Cadastrar</a></li>
+                    <li><a href="#" id="termsLink">Termos de Uso</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Encontre Vidraceiros Profissionais</h1>
+            <p>Conecte-se com vidraceiros e vidraçarias em sua região para qualquer necessidade de vidros e espelhos.</p>
+            <div>
+                <a href="#" class="btn btn-primary tab-link" data-tab="search">Buscar Vidraceiros</a>
+                <a href="#" class="btn btn-secondary tab-link" data-tab="register">Sou Vidraceiro</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Tabs -->
+        <div class="tabs">
+            <div class="tab active" data-tab="search">Buscar Vidraceiros</div>
+            <div class="tab" data-tab="register">Cadastrar-se como Vidraceiro</div>
+        </div>
+
+        <!-- Search Tab -->
+        <div class="tab-content active" id="search">
+            <section class="search-section">
+                <form class="search-form" id="searchForm">
+                    <div>
+                        <label for="service">Serviço</label>
+                        <select class="form-control" id="service">
+                            <option value="">Todos os serviços</option>
+                            <option value="Box para banheiro">Box para banheiro</option>
+                            <option value="Janelas">Janelas</option>
+                            <option value="Espelhos">Espelhos</option>
+                            <option value="Divisórias">Divisórias</option>
+                            <option value="Tampos de mesa">Tampos de mesa</option>
+                            <option value="Reparo emergencial">Reparo emergencial</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="location">CEP ou Cidade</label>
+                        <input type="text" class="form-control" id="location" placeholder="Digite o CEP ou cidade">
+                    </div>
+                    <div>
+                        <label for="emergency">Filtros</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="emergency"> 
+                                <label for="emergency">Atendimento 24h</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="verified">
+                                <label for="verified">Apenas Verificados</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label> </label>
+                        <button type="submit" class="btn btn-primary search-btn">
+                            <i class="fas fa-search"></i> Buscar
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Buscando vidraceiros...</p>
+            </div>
+
+            <section class="results-section" id="resultsSection">
+                <h2 class="results-heading">Vidraceiros Disponíveis</h2>
+                <div class="cards-container" id="resultsContainer">
+                    <!-- Cards will be loaded here dynamically -->
+                </div>
+            </section>
+        </div>
+
+        <!-- Register Tab -->
+        <div class="tab-content" id="register">
+            <section class="form-section">
+                <h2>Cadastre-se como Vidraceiro ou Vidraçaria</h2>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="fullName">Nome Completo ou Nome da Empresa</label>
+                        <input type="text" class="form-control" id="fullName" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="whatsapp">WhatsApp</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">+55</div>
+                                <input type="tel" class="form-control" id="whatsapp" placeholder="DDD + número" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cep">CEP Principal de Atuação</label>
+                            <input type="text" class="form-control" id="cep" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bio">Descrição (até 200 caracteres)</label>
+                        <textarea class="form-control" id="bio" rows="3" maxlength="200"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="profileImage">Foto ou Logo</label>
+                        <input type="file" class="form-control" id="profileImage" accept="image/*">
+                        <small>Opcional - Tamanho máximo: 2MB</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Serviços Oferecidos</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="service1" name="services" value="Box para banheiro">
+                                <label for="service1">Box para banheiro</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="service2" name="services" value="Janelas">
+                                <label for="service2">Janelas</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="service3" name="services" value="Espelhos">
+                                <label for="service3">Espelhos</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="service4" name="services" value="Divisórias">
+                                <label for="service4">Divisórias</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="service5" name="services" value="Tampos de mesa">
+                                <label for="service5">Tampos de mesa</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="service6" name="services" value="Reparo emergencial">
+                                <label for="service6">Reparo emergencial</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="emergency24h">
+                            <label for="emergency24h">Ofereço atendimento emergencial 24h</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="hasCNPJ">
+                            <label for="hasCNPJ">Possuo CNPJ (para obter selo "Verificado")</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="cnpjSection" style="display: none;">
+                        <label for="cnpj">CNPJ</label>
+                        <input type="text" class="form-control" id="cnpj" placeholder="Apenas números">
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="termsAccepted" required>
+                            <label for="termsAccepted">Concordo com os <a href="#" id="termsLinkInForm">Termos de Uso</a></label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success">Cadastrar</button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-column">
+                <h3>VidraJá</h3>
+                <p>Conectando você aos melhores vidraceiros da sua região de forma simples e rápida.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Links Úteis</h3>
+                <ul>
+                    <li><a href="#" class="tab-link" data-tab="search">Buscar Vidraceiros</a></li>
+                    <li><a href="#" class="tab-link" data-tab="register">Cadastrar-se</a></li>
+                    <li><a href="#" id="termsLinkFooter">Termos de Uso</a></li>
+                    <li><a href="#" id="privacyLink">Política de Privacidade</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contato</h3>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> contato@vidraja.com.br</li>
+                    <li><i class="fas fa-phone"></i> (11) 9999-9999</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2025 VidraJá. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal for terms -->
+    <div id="termsModal" class="modal">
+        <div class="modal-content">
+            <span class="close">×</span>
+            <h2>Termos de Uso</h2>
+            <div id="termsContent">
+                <h3>1. Objetivo do Serviço</h3>
+                <p>O VidraJá é uma plataforma que visa facilitar o contato entre clientes e prestadores de serviços de vidraçaria, sem intermediar negociações, pagamentos ou entregas.</p>
+                
+                <h3>2. Isenção de Responsabilidade</h3>
+                <p>2.1. O VidraJá não se responsabiliza pela qualidade dos serviços prestados pelos vidraceiros cadastrados.</p>
+                <p>2.2. Não nos responsabilizamos por qualquer dano, prejuízo ou insatisfação decorrente da relação entre clientes e prestadores de serviço.</p>
+                <p>2.3. A plataforma não verifica a veracidade de todas as informações fornecidas pelos usuários cadastrados, exceto pelo selo "Verificado" que indica apenas a validação básica do CNPJ.</p>
+                
+                <h3>3. Dados e Privacidade</h3>
+                <p>3.1. Coletamos apenas dados necessários para o funcionamento da plataforma, como nome, WhatsApp e CEP.</p>
+                <p>3.2. Não coletamos dados sensíveis como CPF, endereço completo ou dados bancários.</p>
+                <p>3.3. O contato entre usuários ocorre diretamente via WhatsApp, sem nossa intermediação.</p>
+                
+                <h3>4. Uso do Serviço</h3>
+                <p>4.1. É proibido o uso da plataforma para fins ilegais ou que violem os direitos de terceiros.</p>
+                <p>4.2. Os usuários são responsáveis pela veracidade das informações fornecidas.</p>
+                <p>4.3. Nos reservamos o direito de remover cadastros que violem estes termos ou que recebam denúncias consistentes.</p>
+                
+                <h3>5. Sistema de Avaliações</h3>
+                <p>5.1. As avaliações refletem apenas a opinião dos usuários que as publicaram.</p>
+                <p>5.2. Nos reservamos o direito de moderar e remover avaliações que contenham conteúdo ofensivo ou ilegal.</p>
+                
+                <h3>6. Modificações</h3>
+                <p>6.1. Estes termos podem be modificados a qualquer momento sem aviso prévio.</p>
+                <p>6.2. É responsabilidade do usuário verificar periodicamente os termos atualizados.</p>
+                
+                <h3>7. Contato</h3>
+                <p>Para questões relacionadas a estes termos, entre em contato através do e-mail: contato@vidraja.com.br</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for profile view -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeProfileModal">×</span>
+            <div class="profile-card">
+                <!-- Profile content will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
